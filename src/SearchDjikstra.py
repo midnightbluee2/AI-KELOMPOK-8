@@ -1,26 +1,23 @@
 import networkx as nx
 import heapq
 
-# ─────────────────────────────────────────
 #  BUILD GRAPH
-# ─────────────────────────────────────────
 G = nx.Graph()
 
-# Root → lantai (A=1, B=2, C=3, D=4)
+# Root = lantai (A=1, B=2, C=3, D=4)
 floors = {"A": 1, "B": 2, "C": 3, "D": 4}
 for floor, w in floors.items():
     G.add_edge("ROOT", floor, weight=w)
 
-# Lantai → slot (X1..X5, weight mulai dari 5)
+# Lantai = slot (X1..X5, weight mulai dari 5)
 for floor in floors:
     for i in range(1, 6):
         slot = f"{floor}{i}"
         slot_weight = 4 + i          # A1=5, A2=6, ... A5=9 (dst. sama tiap lantai)
         G.add_edge(floor, slot, weight=slot_weight)
 
-# ─────────────────────────────────────────
 #  DIJKSTRA (manual, tanpa nx bawaan)
-# ─────────────────────────────────────────
+
 def dijkstra(graph, start):
     dist   = {node: float("inf") for node in graph.nodes}
     prev   = {node: None         for node in graph.nodes}
@@ -52,9 +49,7 @@ def reconstruct_path(prev, target):
         node = prev[node]
     return list(reversed(path))
 
-# ─────────────────────────────────────────
 #  MAIN
-# ─────────────────────────────────────────
 def main():
     print("=" * 50)
     print("  SMART PARKING — Dijkstra Algorithm")
@@ -73,7 +68,7 @@ def main():
         path = reconstruct_path(prev, node)
         print(f"  {node:4}  cost={dist[node]:2}   path: {' → '.join(path)}")
 
-    # ── Simulasi: cari slot terdekat dari ROOT ──
+    # Simulasi: cari slot terdekat dari ROOT 
     print("\n[SIMULASI: Cari slot parkir terdekat dari pintu masuk]")
     all_slots = [n for n in G.nodes if len(n) == 2 and n[0].isalpha() and n[1].isdigit()]
     best_slot = min(all_slots, key=lambda s: dist[s])
@@ -83,7 +78,7 @@ def main():
     print(f"  Total cost    : {dist[best_slot]}")
     print(f"  Jalur         : {' → '.join(best_path)}")
 
-    # ── Tampilkan semua slot diurutkan by cost ──
+    # Tampilkan semua slot diurutkan by cost
     print("\n[RANKING SLOT berdasarkan jarak dari ROOT]")
     ranked = sorted(all_slots, key=lambda s: dist[s])
     for rank, slot in enumerate(ranked, 1):
