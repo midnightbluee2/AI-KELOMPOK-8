@@ -91,7 +91,7 @@ smart-parking/
 
 ```bash
 git clone https://github.com/midnightbluee2/AI-KELOMPOK-8
-cd smart-parking
+cd AI-KELOMPOK-8
 ```
 
 ### 2. Install dependensi
