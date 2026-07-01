@@ -20,10 +20,10 @@ PARKING_BLOCKS: dict[str, list[str]] = {
 }
 
 ENTRANCE_TO_FLOOR_WEIGHTS: dict[str, float] = {
-    "A": 1.0,
-    "B": 2.0,
-    "C": 3.0,
-    "D": 4.0,
+    "A": 10.0,
+    "B": 20.0,
+    "C": 30.0,
+    "D": 40.0,
 }
 
 BLOCK_INDEX_TO_WEIGHT: dict[int, float] = {
