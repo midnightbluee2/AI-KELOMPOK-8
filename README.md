@@ -1,6 +1,6 @@
-# Smart Parking — Perbandingan Algoritma Searching
+# Smart Parking - Perbandingan Algoritma Searching
 
-> **AI-KELOMPOK-8**
+> **AI-KELOMPOK-8:**
 > Perbandingan Algoritma Searching Pada Sistem Smart Parking Motor di Mall The Park Solo
 
 ## Anggota Kelompok
@@ -16,9 +16,9 @@
 
 Proyek ini mensimulasikan sistem **Smart Parking** yang merekomendasikan slot parkir motor terdekat dari pintu masuk (ENTRANCE) menggunakan tiga algoritma pencarian graf:
 
-- **BFS** (Breadth-First Search) — mencari slot berdasarkan jumlah hop terkecil
-- **Dijkstra** — mencari slot berdasarkan akumulasi cost terkecil
-- **A\*** (A-Star) — mencari slot berdasarkan f = g + h (cost nyata + estimasi heuristik)
+- **BFS** (Breadth-First Search) : mencari slot berdasarkan jumlah hop terkecil
+- **Dijkstra** : mencari slot berdasarkan akumulasi cost terkecil
+- **A\*** (A-Star) : mencari slot berdasarkan f = g + h (cost nyata + estimasi heuristik)
 
 Ketiga algoritma divisualisasikan secara animasi step-by-step dalam satu dashboard interaktif berbasis **Dash** dan **Cytoscape**, sehingga perbedaan perilaku traversal masing-masing algoritma dapat diamati secara langsung.
 
@@ -58,7 +58,7 @@ Bobot edge:
 
 ```
 smart-parking/
-├── app.py                      # Entry point — jalankan dari sini
+├── app.py                      # Entry point (jalankan dari sini)
 ├── layout.py                   # Perakitan layout Dash
 ├── requirements.txt
 │
@@ -90,7 +90,7 @@ smart-parking/
 ### 1. Clone atau ekstrak proyek
 
 ```bash
-git clone <https://github.com/midnightbluee2/AI-KELOMPOK-8>
+git clone https://github.com/midnightbluee2/AI-KELOMPOK-8
 cd smart-parking
 ```
 
@@ -127,14 +127,14 @@ http://localhost:8050
 
 ## Cara Menggunakan Dashboard
 
-1. **Pilih blok penuh** — centang slot parkir yang sedang terisi penuh di panel kiri. Blok yang dipilih akan tampil berwarna gelap di graf tanpa edge (tidak bisa dilewati algoritma).
-2. **Klik Run All** — ketiga algoritma dijalankan sekaligus. Animasi otomatis dimulai dari tab BFS.
-3. **Amati animasi** — setiap langkah traversal divisualisasikan dengan warna:
+1. **Pilih blok penuh** : centang slot parkir yang sedang terisi penuh di panel kiri. Blok yang dipilih akan tampil berwarna gelap di graf tanpa edge (tidak bisa dilewati algoritma).
+2. **Klik Run All** : ketiga algoritma dijalankan sekaligus. Animasi otomatis dimulai dari tab BFS.
+3. **Amati animasi** : setiap langkah traversal divisualisasikan dengan warna:
    - 🟣 Ungu: ENTRANCE
    - ⚫ Hitam: Blok penuh
    - 🔵 Biru muda: Node yang sudah dikunjungi
    - 🔵 Biru terang: Node yang sedang diproses
    - 🟠 Oranye: Jalur terpilih
    - 🟢 Hijau terang: Blok tujuan akhir
-4. **Ganti tab** — klik tab Dijkstra atau A* untuk melihat animasi algoritma lain. Tab yang sudah selesai akan langsung menampilkan jalur akhir.
-5. **Baca hasil** — kartu dan tabel di bawah graph menampilkan blok terdekat, cost, dan ranking seluruh blok yang dapat dijangkau.
+4. **Ganti tab** : klik tab Dijkstra atau A* untuk melihat animasi algoritma lain. Tab yang sudah selesai akan langsung menampilkan jalur akhir.
+5. **Baca hasil** : kartu dan tabel di bawah graph menampilkan blok terdekat, cost, dan ranking seluruh blok yang dapat dijangkau.
