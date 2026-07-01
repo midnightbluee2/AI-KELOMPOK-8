@@ -1,0 +1,4 @@
+dash>=2.16.0
+dash-bootstrap-components>=1.5.0
+dash-cytoscape>=1.0.0
+networkx>=3.2
