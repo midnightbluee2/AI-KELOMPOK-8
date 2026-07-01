@@ -181,13 +181,40 @@ def build_cytoscape_elements(
 
 # Komponen 
 
-def build_cytoscape_graph(condition: ParkingCondition) -> cyto.Cytoscape:
-    
-    return cyto.Cytoscape(
-        id=GRAPH_CYTO_ID,
-        elements=build_cytoscape_elements(condition),
-        stylesheet=CYTOSCAPE_STYLESHEET,
-        layout={"name": "preset"},
+def build_cytoscape_graph(condition: ParkingCondition) -> html.Div:
+    """
+    Dibungkus dalam Div dengan tinggi & overflow tetap, supaya:
+    - Cytoscape selalu tahu ukuran container-nya sejak render pertama
+      (menghindari bug "fit" salah hitung karena container masih 0px saat mount)
+    - Saat user pan/zoom, konten tidak pernah bocor keluar dari card
+    """
+    return html.Div(
+        cyto.Cytoscape(
+            id=GRAPH_CYTO_ID,
+            elements=build_cytoscape_elements(condition),
+            stylesheet=CYTOSCAPE_STYLESHEET,
+            layout={
+                "name":    "preset",
+                "fit":     True,   # otomatis zoom & pan agar semua node terlihat
+                "padding": 50,     # jarak aman dari tepi supaya node tidak terpotong
+            },
+            style={"width": "100%", "height": "100%"},
+            responsive=True,          # auto re-fit saat ukuran container berubah
+            minZoom=0.4,               # batas zoom-out
+            maxZoom=2.5,                # batas zoom-in, agar tidak "hilang" saat zoom
+            wheelSensitivity=0.25,       # scroll zoom lebih halus, tidak lompat jauh
+            userPanningEnabled=True,
+            userZoomingEnabled=True,
+            autoungrabify=True,          # node tidak bisa digeser tidak sengaja
+        ),
+        style={
+            "width":        "100%",
+            "height":       "520px",
+            "overflow":     "hidden",
+            "borderRadius": "8px",
+            "border":       "1px solid #334155",
+            "background":   "#0F172A",
+        },
     )
 
 def build_graph_legend() -> list:
